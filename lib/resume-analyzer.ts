@@ -78,7 +78,7 @@ export class ResumeAnalyzerService {
   }
 
   private extractPhone(text: string): string {
-   const phoneRegex = /(\+\d{1,3}[\s-]?)?/(?\d{3}$$?[\s.-]?\d{3}[\s.-]?\d{4}/g
+   const phoneRegex = /(\+\d{1,3}[\s-]?)?/(?\d{3}/)?[\s.-]?\d{3}[\s.-]?\d{4}/g
     const matches = text.match(phoneRegex)
     return matches ? matches[0] : ""
   }
