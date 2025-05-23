@@ -78,7 +78,7 @@ export class ResumeAnalyzerService {
   }
 
   private extractPhone(text: string): string {
-    const phoneRegex = /(\+\d{1,3}[\s-]?)?$$?\d{3}$$?[\s.-]?\d{3}[\s.-]?\d{4}/g
+    const phoneRegex = /(?:\+?\d{1,3}[\s.-]?)?(?:\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}/g
     const matches = text.match(phoneRegex)
     return matches ? matches[0] : ""
   }
@@ -320,11 +320,11 @@ export class ResumeAnalyzerService {
     // Try different patterns to extract job info
 
     // Pattern 1: "Title at Company (Date - Date)"
-    let match = line.match(/(.+?)\s+at\s+(.+?)(?:\s*$$(.+?)$$)?$/)
+    let match = line.match(/(.+?)\s+at\s+(.+?)(?:\s*\((.+?)\))?$/)
     if (match) {
       return {
         title: match[1].trim(),
-        company: match[2].replace(/\s*$$.+?$$$/, "").trim(),
+        company: match[2].replace(/\s*\(.+?\)$/, "").trim(),
         duration: match[3] || "",
       }
     }
