@@ -320,7 +320,7 @@ export class ResumeAnalyzerService {
     // Try different patterns to extract job info
 
     // Pattern 1: "Title at Company (Date - Date)"
-    let match = line.match(/(.+?)\s+at\s+(.+?)(?:\s*$$(.+?)$$)?$/)
+    let match = line.match(/(.+?)\s+at\s+(.+?)(?:\s*/)(.+?)/))?$/)
     if (match) {
       return {
         title: match[1].trim(),
